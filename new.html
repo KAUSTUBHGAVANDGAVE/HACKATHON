@@ -1,0 +1,145 @@
+<html>
+    <head>HACKATHON<style>
+            .split {
+                height: 100vh;
+                
+                position: fixed;
+                top: 0;
+            }
+            .left {
+                left: 0;
+                width:20%;
+                background-color:burlywood;
+                
+            }
+            .right {
+                right: 0;
+                width:80%;
+                background-color:white;
+                
+            }
+            .inputfield {
+        position: absolute;
+        bottom: 20px;
+        left: 100px;
+        display: flex;
+        align-items: center;
+        width: 60%;
+        background: #f4f4f8;
+        border-radius: 24px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        padding: 8px 16px;
+    }
+    .inputfield input[type="text"] {
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 1.1em;
+        padding: 10px;
+        border-radius: 20px;
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .inputfield button {
+        border: none;
+        background: #19c37d;
+        color: white;
+        font-size: 1.3em;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 8px;
+        transition: background 0.2s;
+    }
+    .inputfield button:hover {
+        background: #13a06b;
+    }
+             .top{
+                top: 20px;
+             }
+
+            
+        </style>
+        
+
+    </head>
+    <body>
+        
+        <div style="background-color:burlywood" ; class="split left">
+        <button id="refreshbutton" class="top">NEW CHAT </button>
+        <div id="chatList"></div>
+        <h4>SEARCH CHAT</h4>
+        <h4>LIBRARY</h4>
+        <br><br>
+        <h4>SORA</h4>
+        <h4>GPTs</h4>
+        <h4>Three.js Mentor</h4>
+        <h4>Consensus</h4>
+        <br><br>
+        <h4>New Project</h4>
+        <h4>Homework</h4>
+        
+        <h4>CHAT HISTORY</h4>
+        <div id="chatHistory"></div>
+
+        
+        
+
+        </div>
+
+        <div style="background-color:white" ; class="split right ">
+         <h2>ChatGPT</h2>
+         <div id="searchResult"></div>
+         <div class="inputfield">
+            <input id="searchInput" type="text" placeholder="Ask Anything..." />
+            <button id="sendButton" type="submit">&#9658;</button>
+         </div>
+                                        
+        </div>
+        <script>
+            const refreshbutton = document.getElementById('refreshbutton');
+            const chatHistory = document.getElementById('chatHistory');
+            const sendButton = document.getElementById('sendButton');
+            const searchInput = document.getElementById('searchInput');
+            const searchResult = document.getElementById('searchResult');
+
+            refreshbutton.addEventListener('click', function () {
+                const chatName = prompt("Enter a new chat name:");
+                if (chatName && chatName.trim() !== "") {
+                    const chatItem = document.createElement('div');
+                    chatItem.textContent = chatName;
+                    chatItem.style.margin = "8px 0";
+                    chatHistory.appendChild(chatItem);
+                }
+            });
+
+            sendButton.addEventListener('click', function () {
+                const query = searchInput.value.trim();
+                if (query !== "") {
+                    searchResult.innerHTML = `
+                        <div style="font-size:1.2em; margin-bottom:8px;">${query}</div>
+                        <div style="color:gray;">SEARCHING...</div>
+                    `;
+                    searchInput.value = "";
+                }
+            });
+
+            
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    sendButton.click();
+                }
+            });
+        </script>
+
+
+
+                    
+
+        
+    </body>
+</html>
